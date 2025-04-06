@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dropdown Navigation</title>
+  <title>Veebu Landing</title>
   <style>
     * {
       box-sizing: border-box;
@@ -13,15 +13,15 @@
       margin: 0;
       padding: 0;
       overflow-x: hidden;
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
     }
 
     video#bg-video {
       position: fixed;
       top: 0;
       left: 0;
-      min-width: 100%;
-      min-height: 100%;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       z-index: -1;
     }
@@ -30,88 +30,81 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 25px;
+      padding: 10px 20px;
       background: rgba(255, 255, 255, 0.3);
       position: fixed;
       width: 100%;
       top: 0;
-      z-index: 1;
+      z-index: 10;
       flex-wrap: wrap;
     }
 
-    .navbar .logo {
+    .logo-section {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-section .logo {
       font-size: 28px;
       font-weight: bold;
       margin-left: 10px;
     }
 
-    .navbar a {
+    .nav-links {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
       color: black;
       font-family: 'Pacifico', cursive;
-      text-decoration: none;
-      padding: 10px;
-      margin: 0 10px;
-      font-size: 16px;
     }
 
-    .navbar a:hover {
-      background-color: white;
+    .right-section img {
+      height: 40px;
     }
 
-    .dropdown {
-      position: relative;
-    }
-
-    .dropdown-content {
+    .hamburger {
       display: none;
-      background: rgba(255, 255, 255, 0.3);
-      position: absolute;
-      left: 0;
-      width: 100vw;
-      top: 100%;
-      text-align: center;
-      z-index: 2;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
     }
 
-    .dropdown-content a {
-      display: block;
-      padding: 10px 0;
-      color: black;
-      text-decoration: none;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: black;
     }
 
     .main-content {
       text-align: center;
-      position: relative;
       margin-top: 150px;
       padding: 20px;
       color: white;
     }
 
     .main-content h1 {
-      font-size: 40px;
-      margin-bottom: 30px;
+      font-size: 2.5em;
+      margin-bottom: 20px;
     }
 
-    .main-content .input-button-wrapper {
+    .input-button-wrapper {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
       gap: 10px;
-      flex-wrap: wrap;
     }
 
     .main-content input {
-      padding: 10px 15px;
+      padding: 12px 15px;
       font-size: 16px;
       border: 1px solid white;
       border-radius: 20px;
-      width: 300px;
+      width: 90%;
+      max-width: 400px;
       background-color: rgba(255, 255, 255, 0.2);
       color: white;
     }
@@ -144,117 +137,88 @@
       margin-right: 10px;
     }
 
-    /* Responsive Design */
+    /* Responsive styles */
     @media (max-width: 768px) {
-      .navbar {
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
         flex-direction: column;
-        align-items: flex-start;
-        padding: 10px 15px;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 15px 0;
+        text-align: center;
       }
 
-      .navbar .logo {
-        font-size: 22px;
-      }
-
-      .navbar a {
-        font-size: 14px;
-        margin: 5px 0;
+      .nav-links.active {
+        display: flex;
       }
 
       .main-content h1 {
-        font-size: 32px;
+        font-size: 24px;
       }
 
       .main-content input {
         width: 90%;
-        max-width: 350px;
-      }
-
-      .create-button {
-        width: auto;
-        padding: 10px 20px;
-        font-size: 15px;
-      }
-
-      .dropdown-content {
-        top: 100%;
-        position: absolute;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .main-content h1 {
-        font-size: 26px;
-      }
-
-      .create-button {
-        flex-direction: row;
-        justify-content: center;
-      }
-
-      .navbar {
-        padding: 8px 10px;
-      }
-
-      .navbar .logo {
-        font-size: 20px;
-      }
-
-      .main-content input {
-        font-size: 14px;
       }
     }
   </style>
 </head>
 <body>
 
-  <video id="bg-video" autoplay muted loop>
-    <source src="LOOP.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+<!-- Background Video -->
+<video id="bg-video" autoplay muted loop playsinline>
+  <source src="LOOP.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
-  <div class="navbar">
-    <div style="display: flex; align-items: center;">
-      <img src="veebu m.png" alt="Veebu logo" width="40" height="50">
-      <div class="logo">eebu</div>
-    </div>
-
-    <div class="nav-links" style="display: flex; flex-wrap: wrap;">
-      <div class="dropdown">
-        <a href="#">Features</a>
-        <div class="dropdown-content">
-          <a href="#">Text to Image</a>
-          <a href="#">Text to Video</a>
-          <a href="#">Image to video</a>
-          <a href="#">Image to animation</a>
-        </div>
-      </div>
-      <a href="#">Templates</a>
-    </div>
-
-    <div class="right-section">
-      <img src="coin.png" alt="Coins" width="40" height="45">
-    </div>
+<!-- Navigation Bar -->
+<div class="navbar">
+  <div class="logo-section">
+    <img src="veebu m.png" alt="logo" height="50" />
+    <div class="logo">eebu</div>
   </div>
 
-  <div class="main-content">
-    <h1>What you imagine is what Veebu</h1>
-    <div class="input-button-wrapper">
-      <input type="text" placeholder="An animated supernatural man with blue tone">
-      <button class="create-button">Create</button>
-    </div>
-
-    <div>
-      <span>A high stylis...</span>
-    </div><br><br>
-
-    <div>
-      <a href="gmail1.html" class="create-button">
-        <img src="g logo.png" alt="g logo" class="img">
-        Sign up with Google
-      </a>
-    </div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
   </div>
+
+  <div class="nav-links" id="navLinks">
+    <a href="#">Features</a>
+    <a href="#">Templates</a>
+  </div>
+
+  <div class="right-section">
+    <img src="coin.png" alt="Coins">
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+  <h1>What you imagine is what Veebu</h1>
+  <div class="input-button-wrapper">
+    <input type="text" placeholder="An animated supernatural man with blue tone">
+    <button class="create-button">Create</button>
+  </div>
+
+  <br>
+  <span>A high stylis...</span><br><br>
+
+  <a href="gmail1.html" class="create-button">
+    <img src="g logo.png" alt="g logo" class="img"> Sign up with Google
+  </a>
+</div>
+
+<!-- JS for Hamburger -->
+<script>
+  function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("active");
+  }
+</script>
 
 </body>
 </html>
